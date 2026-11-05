@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f4eb" />
+  <meta name="description" content="Turn the odds and ends in your fridge into something delicious." />
+  <title>PantryPal — make something of it</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="PantryPal home"><span class="brand-mark">✳</span> pantry<span>pal</span></a>
+    <div class="top-note"><span class="live-dot"></span> GOOD FOOD, LESS WASTE</div>
+    <a class="about-link" href="#how-it-works">How it works <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>YOUR FRIDGE, REIMAGINED</span><span class="eyebrow-line"></span></div>
+        <h1>Make something<br />of <em>what you’ve got.</em></h1>
+        <p class="hero-intro">A few ingredients. A little imagination.<br class="desktop-only" /> Let’s turn “nothing to eat” into something lovely.</p>
+      </div>
+      <div class="hero-stamp" aria-hidden="true"><span class="stamp-spark">✳</span><span>GOOD THINGS<br />ARE IN HERE</span><span class="stamp-arrow">↓</span></div>
+    </section>
+
+    <section class="workspace" aria-label="Recipe maker">
+      <div class="form-panel">
+        <div class="panel-heading"><span class="step-num">01</span><div><h2>What’s in your fridge?</h2><p>Be honest. That half lemon counts.</p></div></div>
+        <form id="recipe-form">
+          <label class="sr-only" for="ingredients">Your ingredients</label>
+          <div class="ingredient-input-wrap"><textarea id="ingredients" rows="3" placeholder="e.g. eggs, spinach, cream, stale bread" maxlength="240" required></textarea><span class="input-icon">✎</span></div>
+          <div class="input-meta"><span>Separate ingredients with commas</span><span id="char-count">0 / 240</span></div>
+          <div class="suggestions"><span class="suggestion-label">TRY A STARTER</span><button class="chip" type="button" data-ingredients="eggs, spinach, heavy cream, stale bread">🥬&nbsp; Fridge frittata</button><button class="chip" type="button" data-ingredients="chickpeas, tomato, coconut milk, rice">🍅&nbsp; Cozy curry</button></div>
+          <div class="preferences">
+            <label class="select-label" for="servings">SERVES</label><select id="servings"><option value="2">2 people</option><option value="1">1 person</option><option value="4">4 people</option></select>
+            <span class="pref-divider"></span><label class="check-label"><input type="checkbox" id="vegetarian" /><span class="custom-check"></span> Vegetarian</label>
+          </div>
+          <button class="submit-btn" id="submit-btn" type="submit"><span class="btn-label">Find my recipe</span><span class="btn-icon">↗</span></button>
+          <p class="form-note">Pantry basics like oil, salt & pepper are always on the house.</p>
+        </form>
+      </div>
+      <div class="result-panel" id="result-panel" aria-live="polite">
+        <div class="empty-state" id="empty-state"><div class="plate-illustration"><div class="plate-ring"><span>✳</span></div><div class="herb herb-one">✦</div><div class="herb herb-two">✿</div><div class="herb herb-three">⌁</div></div><span class="result-kicker">YOUR NEXT FAVORITE</span><h2>A little kitchen<br /><em>magic goes here.</em></h2><p>Add your ingredients and we’ll dream<br /> up something delicious.</p><div class="empty-foot"><span>NO FUSS, JUST FOOD</span><span>✳</span><span>MADE FOR YOU</span></div></div>
+        <div class="loading-state hidden" id="loading-state"><div class="loader-orbit"><span></span></div><span class="result-kicker">A LITTLE KITCHEN MAGIC</span><h2>Thinking up<br /><em>something good…</em></h2><p>Seeing the potential in your pantry.</p></div>
+        <article class="recipe hidden" id="recipe"></article>
+      </div>
+    </section>
+
+    <section class="how" id="how-it-works"><div class="how-title"><span class="eyebrow">THE PANTRYPAL WAY</span><h2>Less waste.<br /><em>More “wow.”</em></h2></div><div class="how-step"><span>01</span><div><strong>Tell us what’s around</strong><p>Any odds and ends. We’re not judging.</p></div></div><div class="how-step"><span>02</span><div><strong>We connect the dots</strong><p>AI finds a delicious way to bring it all together.</p></div></div><div class="how-step"><span>03</span><div><strong>You make the magic</strong><p>Simple steps, smart swaps, zero food guilt.</p></div></div></section>
+  </main>
+  <footer><a class="brand" href="#top"><span class="brand-mark">✳</span> pantry<span>pal</span></a><span>Made with what you have. <span class="footer-heart">♥</span></span><span class="footer-right">A LITTLE LESS WASTE, A LOT MORE TASTE.</span></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
