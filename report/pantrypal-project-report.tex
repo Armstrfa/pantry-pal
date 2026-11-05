@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.78in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\definecolor{forest}{HTML}{244C3D}
+\definecolor{orange}{HTML}{D96A42}
+\definecolor{muted}{HTML}{68756A}
+\hypersetup{colorlinks=true,linkcolor=forest,urlcolor=forest,pdftitle={PantryPal Project Report},pdfauthor={PantryPal Project Team}}
+\titleformat{\section}{\large\bfseries\color{forest}}{}{0pt}{}[\vspace{-2pt}\color{orange}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{forest}}{}{0pt}{}
+\setlist[itemize]{leftmargin=1.25em,itemsep=3pt,topsep=4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\color{muted}PANTRYPAL / PROJECT REPORT}
+\rhead{\small\color{muted}NOVEMBER 2026}
+\cfoot{\small\color{muted}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{0.7in}
+{\large\bfseries\color{orange}PROJECT OVERVIEW \hfill NOVEMBER 2026}\\[1.4in]
+{\fontsize{36}{42}\selectfont\bfseries\color{forest}PantryPal}\\[0.15in]
+{\LARGE\color{orange}A recipe rescuer for the odds and ends.}\\[0.35in]
+{\large A web app that turns three to five fridge ingredients into a practical recipe, with cooking times, clear steps, and substitution advice.}\\[0.75in]
+\color{forest}\rule{\linewidth}{1.2pt}\\[0.22in]
+\textbf{Live application}\\
+\href{https://pantry-pal-ten-lemon.vercel.app}{https://pantry-pal-ten-lemon.vercel.app}\\[0.18in]
+\textbf{GitHub repository}\\
+\href{https://github.com/Armstrfa/pantry-pal}{https://github.com/Armstrfa/pantry-pal}\\[0.18in]
+\textbf{Deployment}\\
+Vercel production deployment, US East region (iad1)\\[0.18in]
+\textbf{Report date}\\
+November 5, 2026\\[0.45in]
+\begin{minipage}{0.85\linewidth}
+\small\color{muted}
+This report documents the project as currently implemented and deployed. The source repository is public and contains the application files and this report.
+\end{minipage}
+\vfill
+{\small\color{muted}LESS WASTE. MORE ``WOW.''}
+\end{titlepage}
+
+\section{Project summary}
+PantryPal helps a home cook decide what to make from a short list of ingredients already on hand. The user enters three to five items, chooses a serving size, and can request a vegetarian recipe. A language model returns a structured recipe that the interface presents as a readable card.
+
+The design keeps the experience focused on one task: enter ingredients and get an actionable meal idea. Starter ingredient sets, a character count, responsive layouts, and a copy-recipe action support quick use on desktop and mobile.
+
+\section{User flow}
+\begin{enumerate}[leftmargin=1.5em,itemsep=5pt]
+  \item Enter three to five comma-separated ingredients, or choose a starter set.
+  \item Select the number of servings and optionally check the vegetarian preference.
+  \item Submit the form. The browser sends the ingredient list and preferences to the server endpoint.
+  \item The endpoint asks the OpenAI Responses API for JSON with a recipe title, description, prep and cook times, ingredients, steps, and substitutions.
+  \item The page renders the result and offers a copy action.
+\end{enumerate}
+
+\section{Project artifacts}
+\begin{center}
+\begin{tabular}{@{}p{0.22\linewidth}p{0.72\linewidth}@{}}
+\toprule
+\textbf{Artifact} & \textbf{Purpose} \\
+\midrule
+\texttt{index.html} & Page structure, ingredient form, starter examples, preferences, empty and loading states. \\
+\texttt{styles.css} & Visual system, responsive layout, recipe card, status messages, and motion. \\
+\texttt{app.js} & Input validation, form submission, API request, safe text rendering, and copy-recipe action. \\
+\texttt{api/recipe.js} & Vercel serverless function. Validates requests, calls the OpenAI Responses API, and returns structured recipe data. \\
+\texttt{vercel.json} & Function runtime configuration, including a 30-second maximum duration. \\
+\texttt{README.md} & Local setup, model configuration, and deployment notes. \\
+\texttt{.gitignore} & Excludes environment files, Vercel local settings, and dependencies from version control. \\
+Report source and PDF & Editable LaTeX source and compiled copy of this report. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Implementation and design}
+The frontend is plain HTML, CSS, and JavaScript. It requires no browser-side framework or package installation. The server endpoint uses the platform's Node.js runtime and the built-in \texttt{fetch} API to call OpenAI. The API key is read from the server environment, so it is not embedded in browser code.
+
+Recipe output is requested with a strict JSON schema. User-entered ingredient strings are treated as data in the generation instructions. The interface escapes returned text before inserting it into the page, and the server limits each ingredient string and the number of ingredients.
+
+The visual design uses a warm ivory background, forest-green type, muted sage details, and a restrained orange accent. A serif display face gives the brand a kitchen-editorial feel; the rest of the interface uses a clean sans serif. The layout shifts from two columns to a stacked mobile view.
+
+\section{Deployment and configuration}
+The production deployment is hosted on Vercel at \href{https://pantry-pal-ten-lemon.vercel.app}{pantry-pal-ten-lemon.vercel.app}. The deployment reached the \texttt{READY} state. The website and API function are deployed together.
+
+Recipe generation requires the project environment variable \texttt{OPENAI\_API\_KEY}. The key must be added to the Vercel project for the desired environments, followed by a redeploy. An optional \texttt{OPENAI\_MODEL} variable selects another Responses API model; the default configured by the application is \texttt{gpt-4.1-mini}.
+
+The Vercel project currently has SSO protection enabled. Access to the Vercel-hosted address may therefore require an authorized team account. The source is hosted in the public GitHub repository \href{https://github.com/Armstrfa/pantry-pal}{Armstrfa/pantry-pal}.
+
+\section{Current scope and next steps}
+The current app covers recipe generation for the submitted ingredient list, serving selection, an optional vegetarian preference, ingredient-count validation, and copying the finished recipe. It does not store user accounts, saved recipes, pantry inventory, or dietary restrictions beyond the vegetarian option.
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=4pt]
+  \item Add \texttt{OPENAI\_API\_KEY} to Vercel's production environment and redeploy to activate recipe generation.
+  \item Review the project's deployment access setting if the app should be available to people outside the Vercel team.
+\end{enumerate}
+
+\vfill
+\noindent\textcolor{forest}{\rule{\linewidth}{1pt}}\\
+{\small\color{muted}PANTRYPAL \hfill Project report / November 2026}
+\end{document}
