@@ -4,7 +4,7 @@ Turn 3–5 fridge ingredients into a practical recipe with time estimates and su
 
 - Live app: https://pantry-pal-ten-lemon.vercel.app
 - GitHub: https://github.com/Armstrfa/pantry-pal
-- Project report: [compiled PDF](output/pdf/pantrypal-project-report.pdf) and [LaTeX source](report/pantrypal-project-report.tex)
+- Project report: [compiled PDF](pantrypal-project-report.pdf) and [LaTeX source](report/pantrypal-project-report.tex)
 
 ## Run locally
 
